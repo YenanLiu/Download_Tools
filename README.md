@@ -5,5 +5,11 @@ This code library is primarily intended to back up some small functions related 
 
 The Music21 directory is used to download the music dataset from YouTube. 
 ```
-python music_download.py
+python ./Music21/music_download.py
+```
+### 2. Download [VGGSound](https://github.com/hche11/VGGSound) 
+
+The VGGSound directory is used to download the VGGSound dataset from YouTube.
+```
+python ./VGGSound/download.py
 ```
