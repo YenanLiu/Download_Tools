@@ -191,12 +191,15 @@ def downloadMusic(json_file, main_save_dir, logger):
                         
 if __name__ == "__main__":
     log_dir = "E://DATA//VGGSoundCode//Music21//down_data//download_logs"
+    os.makedirs(log_dir, exist_ok=True)
     main_save_dir = "E://DATA//VGGSoundCode//Music21//down_data"
     json_paths = ["E://DATA//VGGSoundCode//Music21//vid_files//MUSIC_solo_videos.json", "E://DATA//VGGSoundCode//Music21//vid_files//MUSIC21_solo_videos.json"]
 
     for j_path in json_paths:
         logger_name = os.path.basename(j_path).split(".")[0] + ".txt"
-        logger_path = os.path.join("E://DATA//VGGSoundCode//Music21//down_data//download_logs", logger_name)
+
+        logger_path = os.path.join(log_dir, logger_name)
         logger = setup_logger(logger_path)
 
         downloadMusic(j_path, main_save_dir, logger)
+
