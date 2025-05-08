@@ -4,7 +4,7 @@
 # Authored by Chen Liu (yenanliu36@gmail.com) on July 5, 2025.
 # ---------------------------------------------------------------
 
-num_threads = 32
+num_threads = 4
 
 import os
 import csv
@@ -112,12 +112,13 @@ def convert_to_mp4(input_file, output_file):
 
 def download_one_video(vid, save_dir, csv_path, trimmed_length=6):
     video_url = "https://www.youtube.com/watch?v={}".format(vid)
-    download_file_name = f"v_{vid}"
     options = {
-        'format': 'bestvideo[height<=480]+bestaudio/best[height<=480]',
-        'merge_output_format': 'mkv',
-        'outtmpl': f'tmp/{download_file_name}.%(ext)s',
-        'quiet': True
+        'format': 'bestvideo[height<=480]+bestaudio/best[height<=480]',  # 限制最大分辨率为 480p
+        'merge_output_format': 'mp4',  
+        'outtmpl': f'{save_dir}/%(id)s.%(ext)s',  
+        'quiet': True,   
+        'noplaylist': True,  
+        'nocheckcertificate': True,  
     }
     stderr_redirect = StringIO()
     try:
@@ -202,4 +203,3 @@ if __name__ == "__main__":
         logger = setup_logger(logger_path)
 
         downloadMusic(j_path, main_save_dir, logger)
-
